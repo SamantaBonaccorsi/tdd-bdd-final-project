@@ -235,7 +235,7 @@ class Product(db.Model):
         return cls.query.filter(cls.available == available)
 
     @classmethod
-    def find_by_category(cls, category: Category = Category.UNKNOWN) -> list:
+    def find_by_category(cls, category: Category = Category.UNKNOWN.name) -> list:
         """Returns all Products by their Category
 
         :param category: values are ['MALE', 'FEMALE', 'UNKNOWN']
@@ -245,5 +245,6 @@ class Product(db.Model):
         :rtype: list
 
         """
-        logger.info("Processing category query for %s ...", category.name)
+        logger.info("Processing category query for %s ...", category)
+        logger.info("Processing category query for %s ...", cls.category)
         return cls.query.filter(cls.category == category)
